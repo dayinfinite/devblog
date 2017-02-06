@@ -290,7 +290,7 @@ class Post(db.Model):
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
     @staticmethod
-    def gerenate_fake(count=100):
+    def generate_fake(count=100):
         from random import seed, randint
         import forgery_py
 
