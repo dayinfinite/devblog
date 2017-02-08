@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca957bd1-d6dc-4d1b-817f-1a2ef40d718c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/email.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/decorators.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,18 +21,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6984">
-              <caret line="300" column="58" lean-forward="false" selection-start-line="300" selection-start-column="58" selection-end-line="300" selection-end-column="58" />
-              <folding>
-                <element signature="e#53#84#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/auth/forms.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -111,13 +99,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="email.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="email.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/email.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
               <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
               <folding>
                 <element signature="e#52#80#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="decorators.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/decorators.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+              <folding>
+                <element signature="e#52#79#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,6 +164,7 @@
         <option value="$PROJECT_DIR$/app/main/views.py" />
         <option value="$PROJECT_DIR$/app/templates/index.html" />
         <option value="$PROJECT_DIR$/app/email.py" />
+        <option value="$PROJECT_DIR$/app/decorators.py" />
       </list>
     </option>
   </component>
@@ -490,7 +491,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1932" height="1056" extended-state="1" />
+    <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26045015" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -729,6 +730,16 @@
           <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
           <folding>
             <element signature="e#52#80#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding>
+            <element signature="e#52#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
