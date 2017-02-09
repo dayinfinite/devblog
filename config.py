@@ -7,15 +7,11 @@ basedir=os.path.abspath(os.path.dirname(__file__))
 class Config():
     SECRET_KEY=os.environ.get('SECRET_KEY') or 'hard to guess string'
     SQLALCHEMY_COMMIT_ON_TEAROWN=True
+    SQLALCHEMY_TRACK_MODIFICATIONS=True
     FLASKY_MAIL_SUBJECT_PREFIX= 'Devblog'
     FLASKY_MAIL_SENDER='Flasky Admin <zsq941556540@163.com>'
     FLASKY_ADMIN=os.environ.get('john')
     FLASK_POSTS_PER_PAGE = 3
-    SUBJECTS = [
-        "python文章",
-        "WEB技术",
-        "Linux"
-    ]
 
     @staticmethod
     def init_app(app):
