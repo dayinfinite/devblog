@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}--devlog</title>
+    {% else %}
+    <title>Devblog</title>
+    {% endif %}
+</head>
+<body>
+    <div>Devblog:
+        <a href="/index">Home</a>
+        {% if g.user.is_authenticated %}
+        |    <a href="{{ url_for('user', username = g.user.userkname) }}">Your Profile</a>
+        |    <form style="display: inline;" action="{{url_for('search')}}" method="post" name="search">
+                {{g.search_form.hidden_tag()}}{{g.search_form.search(size=20)}}
+                <input type="submit" value="Search">
+             </form>
+        |    <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content%}{% endblock %}
+</body>
+</html>
