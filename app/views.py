@@ -18,22 +18,11 @@ def index(page=1):
     form = PostFrom()
     if form.validate_on_submit():
         post = Post(content=form.post.data, timestamp=datetime.utcnow(), author=g.user)
+        print  post.timestamp, post.content, post.author
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')
         return redirect(url_for('index'))
-    # posts = [
-    #     {
-    #         'author': {'username':'john'},
-    #         'title': "blog",
-    #         'body': "this is a blog"
-    #     },
-    #     {
-    #         'author': {'username':'susan'},
-    #         'title': "cool",
-    #         'body': "this is very cool"
-    #     }
-    # ]
     posts = Post.query.paginate(page, POSTS_PER_PAGE, False)
     return render_template('index.html',
                            user=user,
