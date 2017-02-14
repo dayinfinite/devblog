@@ -1,8 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-.pyc
+*.pyc
 
-.db
+*.db
 
 config.py
 search.db/Post/MAIN_e5ptnscustf24a9a._stored.col
