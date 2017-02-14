@@ -1,9 +1,13 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-*.pyc
+**/*.pyc
 
 *.db
 
 .idea
+
+db_repository
+
+
 
 config.py
