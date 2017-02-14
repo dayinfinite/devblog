@@ -4,7 +4,6 @@
 
 *.db
 
+.idea
+
 config.py
-search.db/Post/MAIN_e5ptnscustf24a9a._stored.col
-search.db/Post/MAIN_e5ptnscustf24a9a.pst
-search.db/Post/MAIN_e5ptnscustf24a9a.trm
