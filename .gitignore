@@ -136,4 +136,6 @@ ENV/
 .ropeproject
 
 db_repository
-
+.idea
+app.db
+test.db
