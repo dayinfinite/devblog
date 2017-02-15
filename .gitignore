@@ -147,3 +147,4 @@ db_repository
 /app.db
 /test.db
 /search.db/
+/db_repository/
