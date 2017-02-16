@@ -136,6 +136,7 @@ ENV/
 .ropeproject
 
 db_repository
+<<<<<<< HEAD
 
 \\\
 
@@ -148,3 +149,8 @@ db_repository
 /test.db
 /search.db/
 /db_repository/
+=======
+.idea
+app.db
+test.db
+>>>>>>> 71ac7503f265f107043675554603a42288c32b92
