@@ -7,8 +7,9 @@ from .forms import LoginForm, EditForm, PostFrom, SearchForm
 from flask_login import current_user, login_required, login_user, logout_user
 from .models import User, Post
 from datetime import datetime
-from config import POSTS_PER_PAGE, MAX_SEARCH_RESULTS
-
+from config import POSTS_PER_PAGE, MAX_SEARCH_RESULTS, UPLOAD_FOLDER, ALLOWED_EXTENSIONS
+from werkzeug import secure_filename
+import os
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -123,3 +124,17 @@ def search_results(query):
     return render_template('search_results.html',
                            query=query,
                            results=results)
+
+def allow_filename(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allow_filename(file.filename):
+            filename  = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file_url = url_for('upload_file', filename=filename)
+            return redirect(url_for('index'))
+    return render_template('upload.html')
