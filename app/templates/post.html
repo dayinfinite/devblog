@@ -1,10 +1,13 @@
-<table>
-    <tr valign="top">
-        <td><img src="{{ post.author.avatar(50) }}"></td>
-        <td>
-            <i>{{ post.author.username }}</i>
-            <i>{{ post.title }}</i>
-            <i>{{ post.content }}</i>
-        </td>
-    </tr>
-</table>
+<li class="post">
+    <div class="Container">
+        <p>{{ post.title }}</p>
+{#        <div class="post-footer">#}
+{#            <a href="{{ url_for('.post', id=post,id) }}">#}
+{#                <span class="label label-default">link</span>#}
+{#            </a>#}
+{#        </div>#}
+        <div class="post-date">{{ moment(post.timestamp).format('LLL') }}</div>
+        <p>{{ post.content | safe | truncate(100, True) }}</p>
+        <p>{{ post.tags }}</p>
+    </div>
+</li>

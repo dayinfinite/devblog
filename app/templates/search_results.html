@@ -1,8 +1,0 @@
-{% extends 'base/base.html' %}
-
-{% block content %}
-    <h1>Search resutls for "{{ query }}"</h1>
-    {% for post in results %}
-        {% include 'post.html' %}
-    {% endfor %}
-{% endblock %}

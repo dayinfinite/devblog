@@ -2,9 +2,10 @@
 # __author__ = 'dayinfinte'
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField, TextAreaField, validators
+from wtforms import StringField, BooleanField, PasswordField, TextAreaField, validators, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo
 from .models import User
+from flask_pagedown.fields import PageDownField
 
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[DataRequired(), Length(0 ,20, message=u"用户名长度0到20")])
@@ -31,9 +32,7 @@ class EditForm(FlaskForm):
         return True
 
 class PostFrom(FlaskForm):
-    post = StringField('post', validators=[DataRequired()])
+    post = PageDownField('Post', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
-
-class SearchForm(FlaskForm):
-    search = StringField('search', validators=[DataRequired()])
 

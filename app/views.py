@@ -2,34 +2,26 @@
 # __author__ = 'dayinfinte'
 
 from app import app, db, lm
-from flask import render_template, flash, redirect, url_for, g, session, request
-from .forms import LoginForm, EditForm, PostFrom, SearchForm
+from flask import render_template, flash, redirect, url_for, g, session, request, send_from_directory
+from .forms import LoginForm, EditForm, PostFrom
 from flask_login import current_user, login_required, login_user, logout_user
 from .models import User, Post
 from datetime import datetime
 from config import POSTS_PER_PAGE, MAX_SEARCH_RESULTS, UPLOAD_FOLDER, ALLOWED_EXTENSIONS
 from werkzeug import secure_filename
 import os
+import codecs
+import markdown
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @app.route('/index/<int:id>', methods=['GET', 'POST'])
-@login_required
-def index(page=1):
-    form = PostFrom()
-    if form.validate_on_submit():
-        post = Post(content=form.post.data, timestamp=datetime.utcnow(), author=g.user)
-        print  post.timestamp, post.content, post.author
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post is now live!')
-        return redirect(url_for('index'))
-    posts = Post.query.paginate(page, POSTS_PER_PAGE, False)
+def index():
+    posts = Post.query.all()
     return render_template('index.html',
-                           user=user,
-                           posts=posts,
-                           form=form)
-
+                           posts=posts
+                           )
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -47,27 +39,14 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.before_request
-def before_requst():
-    g.user = current_user
-
-
 @app.route('/user/<username>')
 @login_required
 def user(username):
-    username = User.query.filter_by(usernamne=username).first()
+    username = User.query.filter_by(username=username).first()
     if username == None:
         flash('User ' + username + ' not found')
         return redirect(url_for('index'))
-    posts = [
-        {'author': user,
-         'title': 'post1',
-         'body': 'Test post #1'
-         },
-        {'author': user,
-         'title': 'post2',
-         'body': 'Test post #2'}
-    ]
+    posts = Post.query.all()
     return render_template('user.html',
                            user=user,
                            posts=posts)
@@ -79,7 +58,6 @@ def brfore_request():
         g.user.last_seen = datetime.utcnow()
         db.session.add(g.user)
         db.session.commit()
-        g.search_form = SearchForm()
 
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required
@@ -110,31 +88,36 @@ def internal_error(error):
 def about():
     return redirect('about.html')
 
-@app.route('/search', methods=['GET', 'POST'])
-@login_required
-def search():
-    if not g.search_form.validate_on_submit():
-        return redirect(url_for('index'))
-    return redirect(url_for('search_results', query=g.search_form.data))
-
-@app.route('/search_results/<query>')
-@login_required
-def search_results(query):
-    results = Post.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
-    return render_template('search_results.html',
-                           query=query,
-                           results=results)
-
 def allow_filename(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+@app.route('/uploads/<filename>')
+@login_required
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 @app.route('/upload', methods=['GET', 'POST'])
+@login_required
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
         if file and allow_filename(file.filename):
-            filename  = secure_filename(file.filename)
+            filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            file_url = url_for('upload_file', filename=filename)
+            # file_url = url_for('uploaded_file', filename=filename)
+            file_md = codecs.open(filename, mode='r', encoding='utf-8')
+            text = file_md.read()
+            content = markdown.markdown(text)
+            title = filename.rsplit('.')[0]
+            post = Post(title = title, content=content, timestamp=datetime.utcnow(), author=g.user)
+            db.session.add(post)
+            db.session.commit()
             return redirect(url_for('index'))
     return render_template('upload.html')
+
+
+
+@app.route('/post/<int:id>')
+def post(id=1):
+    post = Post.query.get_or_404(id)
+    return render_template('post.html', post=post)

@@ -3,16 +3,8 @@
 
 from app import db, lm
 from hashlib import md5
-from app import app
-import flask_whooshalchemy as whooshalchemy
-enable_search = True
-
-# import sys
-# if sys.version_info >= (3, 0):
-#     enable_search = False
-# else:
-#     enable_search = True
-#     import flask_whooshalchemy as whooshalchemy
+from markdown import markdown
+import bleach
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -57,20 +49,29 @@ class User(db.Model):
         return '<User %s' % self.username
 
 class Post(db.Model):
-    __searchable__ = ['body']
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     content = db.Column(db.Text)
     timestamp = db.Column(db.DateTime)
+    tags = db.Column(db.String(20))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    @staticmethod
+    def on_changed_article(target, value, oldvalue, initiator):
+        allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em',
+                        'i', 'li', 'ol', 'pre', 'strong', 'ul', 'h1', 'h2', 'h3',
+                        'p']
+        target.content = bleach.linkify(bleach.clean(
+            markdown(value, output_format='html'),
+            tags=allowed_tags, strip=True
+        ))
 
     def __repr__(self):
         return '<Post %s>' % self.content
 
-if enable_search:
-    whooshalchemy.whoosh_index(app, Post)
-
 @lm.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
 
