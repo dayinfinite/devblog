@@ -1,13 +1,29 @@
-<li class="post">
-    <div class="Container">
-        <p>{{ post.title }}</p>
-{#        <div class="post-footer">#}
-{#            <a href="{{ url_for('.post', id=post,id) }}">#}
-{#                <span class="label label-default">link</span>#}
-{#            </a>#}
-{#        </div>#}
-        <div class="post-date">{{ moment(post.timestamp).format('LLL') }}</div>
-        <p>{{ post.content | safe | truncate(100, True) }}</p>
-        <p>{{ post.tags }}</p>
-    </div>
-</li>
+{% extends 'base/base.html' %}
+
+{% block header %}
+    <header class="intro-header" style="background-image: url('/static/img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{ post.title }}</h1>
+{#                        <h2 class="subheading"></h2>#}
+                        <span class="meta">Posted by <a href="{{ url_for('index') }}">Devblog on</a>{{ moment(post.timestamp).format('LLL') }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    {{ post.content | safe }}
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock %}

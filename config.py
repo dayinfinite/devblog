@@ -5,7 +5,7 @@ CSRF_ENABLED = True
 SECRET_KEY = 'You-will-never-give-up'
 POSTS_PER_PAGE = 10
 MAX_SEARCH_RESULTS = 50
-UPLOAD_FOLDER = '/devblog/uploads'
+UPLOAD_FOLDER = '/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'md'])
 
 import os

@@ -18,7 +18,7 @@ import markdown
 @app.route('/index', methods=['GET', 'POST'])
 @app.route('/index/<int:id>', methods=['GET', 'POST'])
 def index():
-    posts = Post.query.all()
+    posts = Post.query.order_by(db.desc(Post.id))
     return render_template('index.html',
                            posts=posts
                            )
@@ -86,7 +86,7 @@ def internal_error(error):
 
 @app.route('/about')
 def about():
-    return redirect('about.html')
+    return render_template('about.html')
 
 def allow_filename(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -104,12 +104,13 @@ def upload_file():
         if file and allow_filename(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # file_url = url_for('uploaded_file', filename=filename)
-            file_md = codecs.open(filename, mode='r', encoding='utf-8')
+            file_url = url_for('uploaded_file', filename=filename)
+            print file_url
+            file_md = codecs.open('/'+ filename, mode='r', encoding='utf-8')
             text = file_md.read()
             content = markdown.markdown(text)
             title = filename.rsplit('.')[0]
-            post = Post(title = title, content=content, timestamp=datetime.utcnow(), author=g.user)
+            post = Post(title=title, content=content, timestamp=datetime.utcnow(), author=g.user)
             db.session.add(post)
             db.session.commit()
             return redirect(url_for('index'))
@@ -121,3 +122,9 @@ def upload_file():
 def post(id=1):
     post = Post.query.get_or_404(id)
     return render_template('post.html', post=post)
+
+@app.route('/posts')
+def posts():
+    posts = Post.query.order_by(db.desc(Post.id))
+    return render_template('posts.html', posts=posts)
+

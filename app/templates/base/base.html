@@ -1,28 +1,22 @@
-{% extends 'bootstrap/base.html' %}
-{% block title %}
-    Devblog
-{% endblock %}
-
 {% block head %}
-    {{ super() }}
     {% include 'base/head.html' %}
 {% endblock %}
 
+
 {% block navbar %}
-    {{ super() }}
     {% include 'base/navbar.html' %}
 {% endblock %}
-
-{% block content %}
-        <div class="container">
-            {% block page_content %}
-            {% endblock %}
-        </div>
-    {% include 'base/footer.html' %}
+{% block header %}
+    {% include 'base/header.html' %}
 {% endblock %}
 
+<div class="container main">
+    {% block content %}
+    {% endblock %}
+</div>
+
+{% include 'base/footer.html' %}
 
 {% block scripts %}
-    {{ super() }}
     {% include 'base/scripts.html' %}
 {% endblock %}
