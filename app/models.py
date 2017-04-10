@@ -1,12 +1,15 @@
 # -*- coding:utf-8 -*-
 # __author__ = 'dayinfinte'
 
-from app import db, lm
+
+from . import db, login_manager
 from hashlib import md5
+from flask_login import UserMixin
 from markdown import markdown
 import bleach
+from werkzeug.security import generate_password_hash, check_password_hash
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(64), index=True, unique=True)
@@ -32,6 +35,17 @@ class User(db.Model):
 
     def avatar(self, size):
         return 'http://www.gravatar.com/avatar' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
+
+    @property
+    def password(self):
+        raise AttributeError('password is not readable attribute')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash,password)
 
     @staticmethod
     def make_unique_username(username):
@@ -69,7 +83,7 @@ class Post(db.Model):
     def __repr__(self):
         return '<Post %s>' % self.content
 
-@lm.user_loader
+@login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
 

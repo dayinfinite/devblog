@@ -14,7 +14,7 @@
                          <h3 class="post-subtitle">
                             {{ post.content | safe | truncate(100, True) }}
                          </h3>
-                         <p class="post-meta">Posted by <a href="{{ url_for('index') }}"> Devblog </a>{{ moment(post.timestamp).format('LLL') }}</p>
+                         <p class="post-meta">Posted by <a href="{{ url_for('main.index') }}"> Devblog </a>{{ moment(post.timestamp).format('LLL') }}</p>
                      {% endfor %}
                 </div>
                 <hr>

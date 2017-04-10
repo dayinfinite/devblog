@@ -6,20 +6,20 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">Devblog</a>
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">Devblog</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
-                    <li><a href="{{ url_for('posts') }}">All</a></li>
-                    {% if  g.user.is_authenticated %}
-                        <li><a href="{{ url_for('upload_file') }}">Upload</a></li>
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                    <li><a href="{{ url_for('main.about') }}">About</a></li>
+                    <li><a href="{{ url_for('main.posts') }}">All</a></li>
+                    {% if current_user.is_authenticated %}
+{#                        <li><a href="{{ url_for('upload_file') }}">Upload</a></li>#}
+                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                     {% else %}
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                     {% endif %}
                 </ul>
             </div>

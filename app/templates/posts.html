@@ -7,12 +7,12 @@
                 <hr>
                 <div class="post-preview">
                      {% for post in posts %}
-                         <a href="{{ url_for('.post', id=post.id) }}">
+                         <a href="{{ url_for('main.post', id=post.id) }}">
                             <h2 class="post-title">
                                 {{ post.title }}
                             </h2>
                          <a>
-                         <p class="post-meta">Posted by <a href="{{ url_for('index') }}"> Devblog </a>{{ moment(post.timestamp).format('LLL') }}</p>
+                         <p class="post-meta">Posted by <a href="{{ url_for('main.index') }}"> Devblog </a>{{ moment(post.timestamp).format('LLL') }}</p>
                      {% endfor %}
                 </div>
                 <hr>
