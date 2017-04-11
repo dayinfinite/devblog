@@ -2,11 +2,11 @@
 # __author__ = 'dayinfinte'
 
 from flask import redirect, render_template, flash, url_for, request
-from .forms import LoginForm
+from .forms import LoginForm, RegistrationFrom
 from flask_login import login_user, logout_user, current_user, login_required
 from ..models import User
 from . import auth
-
+from .. import db
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -25,6 +25,19 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+@auth.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationFrom()
+    if form.validate_on_submit():
+        username = User(email=form.email.data,
+                        username=form.username.data,
+                        password=form.password.data)
+        db.session.add(username)
+        db.session.commit()
+        flash('You can now login')
+        return redirect(url_for('auth.login'))
+    return render_template('register.html', form=form)
 
 @auth.route('/secret')
 @login_required
