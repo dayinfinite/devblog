@@ -11,6 +11,7 @@ from .. import db
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    print form.validate_on_submit(), form.username.data, form.password.data
     if form.validate_on_submit():
         username = User.query.filter_by(username=form.username.data).first()
         if username is not None and username.verify_password(form.password.data):
@@ -18,7 +19,6 @@ def login():
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or password.', "warning")
     return render_template('login.html',
-                           title='Sign In',
                            form=form)
 
 @auth.route('/logout')
