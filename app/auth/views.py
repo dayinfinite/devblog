@@ -11,7 +11,6 @@ from .. import db
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    print form.validate_on_submit(), form.username.data, form.password.data
     if form.validate_on_submit():
         username = User.query.filter_by(username=form.username.data).first()
         if username is not None and username.verify_password(form.password.data):
@@ -22,6 +21,7 @@ def login():
                            form=form)
 
 @auth.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
@@ -30,11 +30,13 @@ def logout():
 def register():
     form = RegistrationFrom()
     if form.validate_on_submit():
-        username = User(email=form.email.data,
-                        username=form.username.data,
-                        password=form.password.data)
+        username = User(
+            email=form.email.data,
+            username=form.username.data,
+            password=form.password.data
+            )
         db.session.add(username)
-        db.session.commit()
+        # db.session.commit()
         flash('You can now login')
         return redirect(url_for('auth.login'))
     return render_template('register.html', form=form)

@@ -10,16 +10,6 @@ from config import config
 UPLOAD_FOLDER = '/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-# app=Flask(__name__)
-# app.config.from_object('config')
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-# db = SQLAlchemy(app)
-# pagedown = PageDown(app)
-# moment = Moment(app)
-# lm = LoginManager()
-# lm.init_app(app)
-# lm.login_view = 'login'
-# from app import views, models
 pagedown = PageDown()
 moment = Moment()
 db = SQLAlchemy()

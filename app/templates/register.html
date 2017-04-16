@@ -1,16 +1,12 @@
 {% extends 'base/base.html' %}
 {% block content %}
-    <h1>Register</h1>
-    <form action="" method="post" name="Login">
+    <h1>注册</h1>
+    <form class="form" action="/auth/register" method="post">
         {{form.hidden_tag()}}
-        <p>Email</p>
-        <p>{{form.email}}</p>
-        <P>Username</P>
-        <p>{{form.username}}</p>
-        <p>Password</p>
-        <p>{{form.password}}</p>
-        <p>Confirm password</p>
-        <p>{{form.password2}}</p>
-        <p><input type="submit" value="Register"></p>
+        {{ form.email.label }}{{form.email}}
+        {{ form.username.label }}{{form.username}}
+        {{ form.password.label }}{{form.password}}
+        {{ form.password2.label }}{{form.password2}}
+        <input type="submit" value="注册">
     </form>
 {% endblock %}
