@@ -1,47 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca957bd1-d6dc-4d1b-817f-1a2ef40d718c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/img/flask.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/app.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/css/mui-rtl.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/css/mui-rtl.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/css/mui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/css/mui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-angular-combined.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-angular-combined.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-colors.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-colors.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-combined.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-combined.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-noglobals-rtl.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-noglobals-rtl.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-noglobals.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-noglobals.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-react-combined.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/extra/mui-react-combined.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/js/mui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/static/js/mui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/templates/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/templates/layout/footer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/templates/layout/head.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/templates/layout/header.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/templates/layout/layout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/templates/layout/navbar.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/devblog/templates/layout/scripts.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/migrations/versions/caeffc2178bc_.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/auth/forms.py" afterPath="$PROJECT_DIR$/app/auth/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/auth/views.py" afterPath="$PROJECT_DIR$/app/auth/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/main/forms.py" afterPath="$PROJECT_DIR$/app/main/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/main/views.py" afterPath="$PROJECT_DIR$/app/main/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/base/head.html" afterPath="$PROJECT_DIR$/app/templates/base/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/edit.html" afterPath="$PROJECT_DIR$/app/templates/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/login.html" afterPath="$PROJECT_DIR$/app/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/user.html" afterPath="$PROJECT_DIR$/app/templates/user.html" />
-    </list>
+    <list default="true" id="ca957bd1-d6dc-4d1b-817f-1a2ef40d718c" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -135,8 +95,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -573,7 +533,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.236404" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.236404" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -895,8 +855,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+        <state relative-caret-position="340">
+          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding />
         </state>
       </provider>
