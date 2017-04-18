@@ -36,7 +36,7 @@ def register():
             password=form.password.data
             )
         db.session.add(username)
-        # db.session.commit()
+        db.session.commit()
         flash('You can now login')
         return redirect(url_for('auth.login'))
     return render_template('register.html', form=form)
@@ -45,3 +45,8 @@ def register():
 @login_required
 def secret():
     return "Only autherticated users are allowed"
+
+@auth.before_app_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.ping()

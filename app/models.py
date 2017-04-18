@@ -9,7 +9,7 @@ from flask_login import UserMixin
 from markdown import markdown
 import bleach
 from werkzeug.security import generate_password_hash, check_password_hash
-
+import datetime
 class User(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -17,8 +17,10 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    location = db.Column(db.String(64))
     about_me = db.Column(db.String(140))
-    last_seen = db.Column(db.DateTime)
+    member_since = db.Column(db.DateTime(), default=datetime.datetime.utcnow())
+    last_seen = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 
     def is_authenticated(self):
         return True
@@ -34,6 +36,9 @@ class User(UserMixin, db.Model):
             return unicode(self.id)  # python 2
         except NameError:
             return str(self.id)  # python 3
+    def ping(self):
+        self.last_seen = datetime.datetime.utcnow()
+        db.session.add(self)
 
     def avatar(self, size):
         return 'http://www.gravatar.com/avatar' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)

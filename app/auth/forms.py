@@ -9,9 +9,9 @@ from ..models import User
 class LoginForm(FlaskForm):
     # email = StringField('Email', validators=[DataRequired(), Length(1, 64), Email()])
     username = StringField(u'用户名', validators=[DataRequired(), Length(0 ,20, message=u"用户名长度0到20")],
-                           render_kw={'class':'form-control', 'placeholder': u'用户名'})
+                           render_kw={'class':'form-control', 'placeholder': u'用户名', 'rows': 6, 'type': 'text'})
     password = PasswordField(u'密码', validators=[DataRequired(), Length(0, 20, message=u'密码长度0到20')],
-                             render_kw={'class': 'form-control', 'placeholder': u'密码'})
+                             render_kw={'class': 'form-control', 'placeholder': u'密码', 'rows': 6, 'type': 'password'})
     remember_me = BooleanField('remember', default=False)
     submit = SubmitField(u'登录', render_kw={'type': 'submit', 'class': 'btn btn-default'})
 

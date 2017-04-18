@@ -8,7 +8,6 @@ from ..models import User, Post
 from .. import db
 from flask_login import current_user, login_required, login_user, logout_user
 from datetime import datetime
-from werkzeug import secure_filename
 import os
 import codecs
 import markdown
@@ -31,23 +30,25 @@ def user(username):
         return redirect(url_for('main.index'))
     posts = Post.query.all()
     return render_template('user.html',
-                           user=user,
+                            user=user,
                            posts=posts)
 
 @main.route('/edit', methods=['GET', 'POST'])
 @login_required
 def edit():
-    form = EditForm(g.user.username)
+    form = EditForm(current_user)
     if form.validate_on_submit():
-        g.user.username = form.username.data
-        g.user.about_me = form.about_me.data
-        db.session.add(g.user)
+        current_user.username = form.username.data
+        current_user.username = form.location.data
+        current_user.about_me = form.about_me.data
+        db.session.add(current_user)
         db.session.commit()
         flash('Your changes have been saved')
         return redirect(url_for('edit'))
     else:
-        form.username.data = g.user.username
-        form.about_me.data = g.user.about_me
+        form.username.data = current_user.username
+        form.location.data = current_user.location
+        form.about_me.data = current_user.about_me
     return render_template('edit.html', form=form)
 
 @main.route('/about')
@@ -58,7 +59,7 @@ def about():
 # @login_required
 # def uploaded_file(filename):
 #     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
+#
 # @main.route('/upload', methods=['GET', 'POST'])
 # @login_required
 # def upload_file():

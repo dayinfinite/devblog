@@ -8,8 +8,10 @@ from ..models import User
 from flask_pagedown.fields import PageDownField
 
 class EditForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired()])
-    about_me = TextAreaField('about_me', validators=[Length(min=0, max=140)])
+    username = StringField(u'用户', validators=[DataRequired(), Length(0, 64)])
+    location = StringField(u'地区', validators=[DataRequired(), Length(0, 64)])
+    about_me = TextAreaField(u'个人介绍', validators=[Length(min=0, max=140)])
+    submit = SubmitField(u'确认')
 
     def __init__(self, original_username, *args, **kwargs):
         FlaskForm.__init__(self, *args, **kwargs)

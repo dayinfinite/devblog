@@ -156,3 +156,4 @@ test.db
 >>>>>>> 71ac7503f265f107043675554603a42288c32b92
 /uploads/
 /node_modules/
+/migrations/
