@@ -17,16 +17,16 @@ class LoginForm(FlaskForm):
 
 class RegistrationFrom(FlaskForm):
     email = StringField('Email', validators=[Required(), Length(1, 64), Email()],
-                        render_kw={'class': 'form-control', 'placeholder': u'邮箱'})
+                        render_kw={'class': 'form-control', 'placeholder': u'邮箱', 'rows': 6, 'type': 'text'})
     username = StringField('username', validators=[DataRequired(), Length(0, 20, message=u'用户名长度0到20')],
-                           render_kw={'class': 'form-control', 'placeholder': u'用户'}
+                           render_kw={'class': 'form-control', 'placeholder': u'用户', 'rows': 6, 'type': 'text'}
                            )
     password = PasswordField('password', validators=[DataRequired(), Length(0, 20, message=u'用户名长度0到20')],
-                             render_kw={'class': 'form-control', 'placeholder': u'密码'}
+                             render_kw={'class': 'form-control', 'placeholder': u'密码', 'rows': 6,'type': 'password'}
                              )
     password2 = PasswordField('confirm', validators=[Required()],
-                              render_kw={'class': 'form-control', 'placeholder': u'密码'})
-    submit = SubmitField('Register')
+                              render_kw={'class': 'form-control', 'placeholder': u'密码', 'rows': 6, 'type': 'password'})
+    submit = SubmitField(u'确认', render_kw={'type': 'submit', 'class': 'btn btn-default'})
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():

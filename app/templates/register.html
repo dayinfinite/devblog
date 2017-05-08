@@ -1,12 +1,24 @@
 {% extends 'base/base.html' %}
 {% block content %}
-    <h1>注册</h1>
-    <form class="form" action="/auth/register" method="post">
-        {{form.hidden_tag()}}
-        {{ form.email.label }}{{form.email}}
-        {{ form.username.label }}{{form.username}}
-        {{ form.password.label }}{{form.password}}
-        {{ form.password2.label }}{{form.password2}}
-        <input type="submit" value="注册">
-    </form>
+<div class="Container">
+    <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2" id="logindev">
+        <div>
+            <h1><small>注册</small></h1>
+            <form class="form-horizontal" method="POST">
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                      {{form.hidden_tag()}}
+                      {{ form.email.label }}{{form.email}}
+                      {{ form.username.label }}{{form.username}}
+                      {{ form.password.label }}{{form.password}}
+                      {{ form.password2.label }}{{form.password2}}
+                    </div>
+                    <div class="form-group col-xs-14">
+                        {{ form.submit() }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
