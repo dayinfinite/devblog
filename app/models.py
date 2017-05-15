@@ -9,6 +9,7 @@ from flask_login import UserMixin
 from markdown import markdown
 import bleach
 from werkzeug.security import generate_password_hash, check_password_hash
+from itsdangerous import Serializer
 import datetime
 class User(UserMixin, db.Model):
 
@@ -65,6 +66,19 @@ class User(UserMixin, db.Model):
                 break
             version += 1
         return new_username
+
+    def generate_auth_token(self, expiration):
+        s = Serializer(current_app.config['SECRET_KEY'], expires_in=expiration)
+        return s.dumps({'id': self.id})
+
+    @staticmethod
+    def verify_auth_token(token):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token)
+        except:
+            return None
+        return User.query.get(data['id'])
 
     def __repr__(self):
         return '<User %s' % self.username
