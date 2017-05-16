@@ -8,7 +8,7 @@ from hashlib import md5
 from flask_login import UserMixin
 from markdown import markdown
 import bleach
-from app.exceptions import ValidationError
+from wtforms import ValidationError
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import Serializer
 import datetime
