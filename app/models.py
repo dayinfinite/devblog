@@ -3,11 +3,12 @@
 
 
 from . import db, login_manager
-from flask import current_app
+from flask import current_app, url_for
 from hashlib import md5
 from flask_login import UserMixin
 from markdown import markdown
 import bleach
+from app.exceptions import ValidationError
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import Serializer
 import datetime
@@ -100,7 +101,24 @@ class Post(db.Model):
             markdown(value, output_format='html'),
             tags=allowed_tags, strip=True
         ))
-
+    
+    def to_json(self):
+        json_post = {
+            'url': url_for('api.get_post', id=self.id, _external=True),
+            'title': self.title,
+            'content': self.content,
+            'timestamp': self.timestamp,
+            'tags': self.tags
+        }
+        return json_post
+    
+    @staticmethod
+    def from_json(json_post):
+        content=json_post.get('content')
+        if content is None or content == "":
+            raise ValidationError('post does not have a content')
+        return Post(content=content)
+    
     def __repr__(self):
         return '<Post %s>' % self.content
 

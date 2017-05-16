@@ -12,7 +12,11 @@ def unauthorized(message):
     response = jsonify({'error': 'unauthorized', 'message': message})
     response.status_code = 401
     return response
-def badrequest(messgae):
+def badrequest(message):
     response = jsonify({'error': 'unauthorized', 'message': message})
     response.status_code = 400
     return response
+
+@api.errorhandler(ValidationError)
+def validation_error(e):
+    return badrequest(e.args[0])
