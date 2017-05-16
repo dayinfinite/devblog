@@ -24,3 +24,11 @@ def new_post():
     db.session.add(post)
     db.session.commit()
     return jsonify(post.to_json()), 201, {'Location': url_for('api.get_post', id=post.id, _external=True) }
+
+@api.route('/posts/<int:id>', method=['PUT'])
+@auth.login_required
+def edit_post(id):
+    post = Post.query.get_or_404(id)
+    post.content = request.json.get('content', post.content)
+    db.session.add(post)
+    return jsonify(post.to_json())
