@@ -1,9 +1,26 @@
 # -*- coding:utf-8 -*-
 # __author__ = 'dayinfinte'
 
-from flask_login import login_required
+from flask import request, jsonify, url_for
+from ..models import Post
+from .. import db, auth
 from . import api
 
 @api.route('/posts/')
+@auth.login_required
 def get_posts():
-    pass
+    posts = Post.query.all()
+    return jsonify({'posts': [post.to_json() for post in posts]})
+
+@api.route('/post/<int:id>')
+@auth.login_required
+def get_post(id):
+    post = Post.query.get_or_404(id)
+    return jsonify(post.to_json())
+
+@api.route('/posts/', method=['POST'])
+def new_post():
+    post = Post.from_json(request.json)
+    db.session.add(post)
+    db.session.commit()
+    return jsonify(post.to_json()), 201, {'Location': url_for('api.get_post', id=post.id, _external=True) }
