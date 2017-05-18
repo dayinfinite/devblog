@@ -7,7 +7,6 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
                         <h1>{{ post.title }}</h1>
-{#                        <h2 class="subheading"></h2>#}
                         <span class="meta">Posted by <a href="{{ url_for('main.index') }}">Devblog on</a>{{ moment(post.timestamp).format('LLL') }}</span>
                     </div>
                 </div>

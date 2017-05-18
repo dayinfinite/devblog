@@ -16,7 +16,6 @@
                     <li><a href="{{ url_for('main.about') }}">About</a></li>
                     <li><a href="{{ url_for('main.posts') }}">All</a></li>
                     {% if current_user.is_authenticated %}
-{#                        <li><a href="{{ url_for('upload_file') }}">Upload</a></li>#}
                         <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                     {% else %}
                         <li><a href="{{ url_for('auth.login') }}">Login</a></li>

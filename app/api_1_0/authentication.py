@@ -13,7 +13,7 @@ def verify_password(user_or_token, password):
 
     if password == '':
         g.current_user = User.verify_auth_token(user_or_token)
-        g.token_userd = True
+        g.token_used = True
         return g.current_user is not None
     user = User.query.filter_by(username=user_or_token).first()
     if not user:
@@ -28,7 +28,8 @@ def auth_error():
 
 @api.route('/token')
 def get_token():
-    if g.token_user:
-        return unauthorized('Invalid credentials')
+
+    # if g.token_used:
+    #     return unauthorized('Invalid credentials')
     return jsonify({'token': g.current_user.generate_auth_token(expiration=3600), 'expiration': 3600})
 
