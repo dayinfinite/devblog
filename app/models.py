@@ -21,7 +21,7 @@ class User(UserMixin, db.Model):
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     location = db.Column(db.String(64))
     about_me = db.Column(db.String(140))
-    member_since = db.Column(db.DateTime(), default=datetime.datetime.utcnow())
+    member_since = db.Column(db.DateTime(), default=datetime.datetime.now())
     last_seen = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 
     def is_authenticated(self):
@@ -88,7 +88,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     content = db.Column(db.Text)
-    timestamp = db.Column(db.DateTime)
+    timestamp = db.Column(db.DateTime(), default=datetime.datetime.now())
     tags = db.Column(db.String(20))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
@@ -101,30 +101,26 @@ class Post(db.Model):
             markdown(value, output_format='html'),
             tags=allowed_tags, strip=True
         ))
-    
+
     def to_json(self):
         json_post = {
             'url': url_for('api.get_post', id=self.id, _external=True),
             'title': self.title,
             'content': self.content,
-            'timestamp': self.timestamp,
             'tags': self.tags
         }
         return json_post
-    
+
     @staticmethod
     def from_json(json_post):
         content=json_post.get('content')
         if content is None or content == "":
             raise ValidationError('post does not have a content')
-        return Post(content=content)
-    
+        return Post(title=json_post.get('title'), content=content, timestamp=json_post.get('timestamp'), tags=json_post.get('tags'))
+
     def __repr__(self):
         return '<Post %s>' % self.content
 
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
-
-
