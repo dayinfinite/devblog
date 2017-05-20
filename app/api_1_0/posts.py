@@ -29,3 +29,5 @@ def edit_post(id):
     post.content = request.json.get('content', post.content)
     db.session.add(post)
     return jsonify(post.to_json())
+
+
